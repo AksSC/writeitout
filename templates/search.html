@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    - Search
+{% endblock %}
+
+{% block display %}
+    {{ display }}
+{% endblock %}
+
+{% block main %}
+
+    <form action="/search" method="get">
+        <div class="form-group">
+            <input class="form-control" name="q" type="text" autofocus value="{{ q }}" placeholder="Query">
+        </div>
+        <button class="btn btn-outline-dark" type="submit">Search</button>
+    </form>
+    <h2 style="margin-bottom: 1em">Authors</h2>
+    {% if authors|length == 0 %}
+        <p>No authors found for query {{ q }}</p>
+    {% else %}
+        <div class="container flex">
+
+            {% for author in authors %}
+                <div class="card" style="width: 18rem;">
+                    <img src="/static/pictures/{{ author.username }}{{ author.extension }}" class="card-img-top rounded-circle" alt="{{ author.username }}'s profile picture">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ author.display }}</h5>
+                        <p class="card-text">{{ author.username }}</p>
+                        <a href="/authors/{{ author.username }}" class="btn btn-link">View author</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <h2 style="margin-bottom: 1em">Articles</h2>
+
+    {% if articles|length == 0 %}
+        <p>No articles found for query {{ q }}</p>
+    {% else %}
+        <div class="container flex">
+
+            {% for article in articles %}
+
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text">{{ article.content }}</p>
+                        <a href="/read/{{ article.title }}/{{ article.id }}" class="btn btn-link">View article</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock %}

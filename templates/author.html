@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    - {{ author.display }}
+{% endblock %}
+
+{% block display %}
+    {{ display }}
+{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+        <img class="profile rounded-circle mx-auto d-block" src="/static/pictures/{{ author.username }}{{ author.extension }}" alt="{{ author['username'] }}'s Profile Picture">
+        <p></p>
+    </div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>Display name:</td>
+                <td>{{ author.display }} <a style="color: #F2F0F1">Change</a></td>
+            </tr>
+            <tr>
+                <td>Username:</td>
+                <td>{{ author.username }} <a style="color: #F2F0F1">Change</a></td>
+            </tr>
+            <tr>
+                <td>Articles written:</td>
+                <td>{{ articles|length }}  <a style="color: #F2F0F1">Change</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 style="margin-bottom: 1em">Articles</h2>
+
+    {% if articles|length == 0 %}
+        <p>No articles</p>
+    {% else %}
+        <div class="container flex">
+
+            {% for article in articles %}
+
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text">{{ article.content }}</p>
+                        <a href="/read/{{ article.title }}/{{ article.id }}" class="btn btn-link">View article</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    - Read
+{% endblock %}
+
+{% block display %}
+    {{ display }}
+{% endblock %}
+
+{% block main %}
+
+    <h2 style="margin-bottom: 1em">All Articles</h2>
+
+    {% if articles|length == 0 %}
+        <p>No articles found</p>
+    {% else %}
+        <div class="container flex">
+
+            {% for article in articles %}
+
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text">{{ article.content }}</p>
+                        <a href="/read/{{ article.title }}/{{ article.id }}" class="btn btn-link">View article</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock %}

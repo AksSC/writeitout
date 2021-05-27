@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    - Home
+{% endblock %}
+
+{% block display %}
+    {{ display }}
+{% endblock %}
+
+{% block main %}
+
+
+    <div class="container flex">
+        <div class="card" style="width: 18rem;">
+            <h2 style="margin-bottom: 1em">Just In</h2>
+            <div class="card-body">
+                <h5 class="card-title">{{ latest.title }}</h5>
+                <p class="card-text">{{ latest.content }}</p>
+                <a href="/read/{{ latest.title }}/{{ latest.id }}" class="btn btn-link">View article</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <h2 style="margin-bottom: 1em">Most Viewed</h2>
+            <div class="card-body">
+                <h5 class="card-title">{{ viewed.title }}</h5>
+                <p class="card-text">{{ viewed.content }}</p>
+                <a href="/read/{{ viewed.title }}/{{ viewed.id }}" class="btn btn-link">View article</a>
+            </div>
+        </div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <p class="card-text font">"Start writing, no matter what. The water does not flow until the faucet is turned on."</p>
+            </div>
+        </div>
+    </div>
+    <div class="container font" style="margin-top: 1.7em;">
+        "You don’t start out writing good stuff. You start out writing crap and thinking it’s good stuff, and then gradually you get better at it."
+    </div>
+
+{% endblock %}

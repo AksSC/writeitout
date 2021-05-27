@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    - Change {{ field }}
+{% endblock %}
+
+{% block display %}
+    {{ display }}
+{% endblock %}
+
+{% block main %}
+
+    <form action="/change/{{ field }}" method="post" enctype="multipart/form-data">
+        {% if field == "display" %}
+            {% include "display.html" %}
+        {% elif field == "picture" %}
+            {% include "picture.html" %}
+        {% elif field == "password" %}
+            {% include "password.html" %}
+        {% endif %}
+        <button class="btn btn-outline-dark" type="submit">Change</button>
+    </form>
+
+
+
+{% endblock %}

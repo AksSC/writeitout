@@ -1,0 +1,12 @@
+<div class="form-group">
+    <label class="form-control" for="img">Choose a new profile picture:</label>
+    <input autocomplete="off" id="img" name="new" class="form-control" type="file" accept="image/*" style="display: none;" required>
+</div>
+
+<script>
+    const selector = document.querySelector("#img");
+    selector.addEventListener('change', function() {
+        let filename = this.files[0].name;
+        document.querySelector("label").innerHTML = filename;
+    });
+</script>

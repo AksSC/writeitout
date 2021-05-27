@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    - Write
+{% endblock %}
+
+{% block display %}
+    {{ display }}
+{% endblock %}
+
+{% block main %}
+
+    <form action="/write" method="post">
+        <div class="form-group">
+            <input class="form-control write" type="text" autofocus autocomplete="off" name="title" placeholder="Title" required>
+        </div>
+        <div class="form-group">
+            <textarea class="form-control write" rows="15" autofocus required autocomplete="off" style="width: 60vw;" name="content" placeholder="Content goes here..."></textarea>
+        </div>
+        <button class="btn btn-outline-dark" type="submit">Publish</button>
+    </form>
+
+{% endblock %}

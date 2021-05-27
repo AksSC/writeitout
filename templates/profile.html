@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    - Profile
+{% endblock %}
+
+{% block display %}
+    {{ user.display }}
+{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+        <a href="/change/picture"><img class="profile rounded-circle mx-auto d-block" src="/static/pictures/{{ user.username }}{{ user.extension }}" alt="{{ user['username'] }}'s Profile Picture"></a>
+        <p style="font-size: 12px">Click on image to change</p>
+    </div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>Display name:</td>
+                <td>{{ user.display }} <a href="/change/display" class="btn btn-link">Change</a></td>
+            </tr>
+            <tr>
+                <td>Username:</td>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><span class="password">foobarbaz</span> <a href="/change/password" class="btn btn-link">Change</a></td>
+            </tr>
+            <tr>
+                <td>Articles written:</td>
+                <td>{{ articles|length }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 style="margin-bottom: 1em">Articles</h2>
+
+    {% if articles|length == 0 %}
+        <p>No articles</p>
+    {% else %}
+        <div class="container flex">
+
+            {% for article in articles %}
+
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text">{{ article.content }}</p>
+                        <a href="/read/{{ article.title }}/{{ article.id }}" class="btn btn-link">View article</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+
+{% endblock %}
