@@ -1,5 +1,5 @@
 import os
-
+from PIL import Image
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, jsonify
 from flask_session import Session
@@ -9,6 +9,7 @@ from helpers import login_required
 
 app = Flask(__name__)
 path = "static/pictures/"
+sample = "static/pictures/download.png"
 
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
@@ -98,10 +99,12 @@ def register():
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
         img = request.files["picture"]
+        if not img:
+            img = Image.open(sample)
         checkusername = db.execute("SELECT * FROM users WHERE username = ?", username)
         filename, ext = os.path.splitext(img.filename)
 
-        if not username or not password or not confirmation or not display or not img:
+        if not username or not password or not confirmation or not display:
             flash("All fields are required!")
             return render_template("register.html")
         elif len(checkusername) != 0:
