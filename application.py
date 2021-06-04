@@ -24,7 +24,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-db = SQL("postgresql://bzkdvygshkzpea:4d072d31d3b938bfed24c58101fe000dd5a43eb51421bd2cf42c4ab67c18671e@ec2-54-228-9-90.eu-west-1.compute.amazonaws.com:5432/df29ualtkqevb1")
+db = SQL("postgresql://amiqogrhexwqlj:766a20b4e86d01b5b9e87ebcfb2639d79a6ff00bc5ead005870c41b4ea0b620c@ec2-54-155-35-88.eu-west-1.compute.amazonaws.com:5432/da98djjslr4uvq")
 
 @app.route("/")
 def index():
