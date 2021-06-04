@@ -242,15 +242,12 @@ def article(title, id):
     article = db.execute("SELECT * FROM articles WHERE title = ? AND id = ?", title, id)[0]
     author = db.execute("SELECT display, username FROM users WHERE id = ?", article['author_id'])[0]
     rows = db.execute("SELECT * FROM views WHERE article_id = ? AND user_id = ?", id, user_id)
-    year = article['time'][0] + article['time'][1] + article['time'][2] + article['time'][3]
-    month = article['time'][5] + article['time'][6]
-    day = article['time'][8] + article['time'][9]
 
 
     if user_id != article['author_id'] and len(rows) == 0:
         db.execute("INSERT INTO views (user_id, article_id) VALUES (?, ?)", user_id, id)
 
-    return render_template("article.html", display=display, article=article, author=author, year=year, month=month, day=day)
+    return render_template("article.html", display=display, article=article, author=author)
 
 @app.route("/authors/<username>")
 @login_required
