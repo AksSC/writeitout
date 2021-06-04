@@ -24,7 +24,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-db = SQL(os.getenv("DATTABASE_URL"))
+db = SQL("postgres://eyehkiagxqggyb:0565cdc1ddecfd342d2a443b1b7d34f940d0bd8f0c7b327a47fce27147b2f1c7@ec2-54-74-60-70.eu-west-1.compute.amazonaws.com:5432/d9jhf1e9g0caeu")
 
 @app.route("/")
 def index():
