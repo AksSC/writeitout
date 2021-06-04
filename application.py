@@ -32,7 +32,7 @@ def index():
         return render_template("index.html")
     else:
         display = db.execute("SELECT display FROM users WHERE id = ?", session.get("user_id"))[0]['display']
-        latest = db.execute("SELECT * FROM articles WHERE author_id != ? ORDER BY datetime(time, '+05 hours','+30 minutes') DESC LIMIT 1", session.get("user_id"))[0]
+        latest = db.execute("SELECT * FROM articles WHERE author_id != ? ORDER BY time DESC LIMIT 1", session.get("user_id"))[0]
         viewed_id = db.execute("SELECT article_id FROM views GROUP BY article_id ORDER BY sum(view) DESC LIMIT 1")[0]['article_id']
         viewed = db.execute("SELECT * FROM articles WHERE id = ?", viewed_id)[0]
 
